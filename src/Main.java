@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Methods methods = new Methods();
         Messages messages = new Messages();
-        Games randomOneToTen = new Games();
+        Games games = new Games();
         System.out.println(messages.welcomeMessage());
 
         Scanner scanner = new Scanner(System.in);
@@ -23,22 +23,22 @@ public class Main {
 
             switch (chooseGameType) {
                 case 1:
-                    randomOneToTen.game1_10();
+                    games.game1_10();
                     break;
                 case 2:
-                    randomOneToTen.game1_20();
+                    games.game1_20();
                     break;
                 case 3:
-                    randomOneToTen.game1_30();
+                    games.game1_30();
                     break;
                 case 4:
-                    randomOneToTen.game1_40();
+                    games.game1_40();
                     break;
                 case 5:
-                    randomOneToTen.game1_50();
+                    games.game1_50();
                     break;
                 case 6:
-//                    randomOneToTen.game1_0();
+                    games.gamePlayerRange();
                     break;
                 case 0:
                     System.out.println(messages.exitGame());

@@ -42,6 +42,18 @@ public class Methods {
         return random.nextInt((max - min) + 1) + min;
     }
 
+    public int randomRange(Scanner scanner) {
+        int firstValue = playerInputValidator(scanner, menu.setFirstValue(), menu.thatIsNotNumberErrorMessage());
+        int secondValue = playerInputValidator(scanner, menu.setSecondValue(), menu.thatIsNotNumberErrorMessage());
+        while (secondValue == firstValue) {
+            System.out.println(menu.secondValueMustBeDifferent(firstValue));
+            secondValue = playerInputValidator(scanner, menu.setSecondValue(), menu.thatIsNotNumberErrorMessage());
+        }
+        int max = Math.max(firstValue, secondValue);
+        int min = Math.min(firstValue, secondValue);
+        return random.nextInt((max - min) + 1) + min;
+    }
+
 
     public void checkNumbersForOneTry(int computerNumber, int playerNumber) {
         if (playerNumber == computerNumber) {
@@ -57,17 +69,16 @@ public class Methods {
             System.out.println(optionsMessage);
             try {
                 return scan.nextInt();
-            }
-            catch (InputMismatchException exc) {
+            } catch (InputMismatchException exc) {
                 System.out.println(errorMessage);
-            }
-            finally {
+            } finally {
                 scan.nextLine();
             }
         }
     }
-    public void multipleTriesMode(Scanner scanner, int computerNumber){
-        int guessCount =0;
+
+    public void multipleTriesMode(Scanner scanner, int computerNumber) {
+        int guessCount = 0;
         int playerNumber;
         int numberOfTries = playerInputValidator(scanner, menu.howManyTriesYouWantToHave(), menu.inputAmountOfTriesErrorMessage());
         System.out.println(menu.computerDrewNumberMessage());
@@ -86,7 +97,7 @@ public class Methods {
         }
     }
 
-    public void oneTryMode (Scanner scanner, int randomNumberRange){
+    public void oneTryMode(Scanner scanner, int randomNumberRange) {
         int playerNumber;
         int computerNumber;
         computerNumber = randomNumberRange;
@@ -94,7 +105,6 @@ public class Methods {
         playerNumber = playerInputValidator(scanner, menu.youHaveOnlyOneTryToGuessTheNumber(), menu.thatIsNotNumberErrorMessage());
         checkNumbersForOneTry(computerNumber, playerNumber);
     }
-
 
 
 }

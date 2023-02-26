@@ -12,7 +12,7 @@ public class Messages {
 
     public String menuGameRange(int option) {
         String gameRange = null;
-        switch (option){
+        switch (option) {
             case 1:
                 gameRange = color.yellow("You have chosen to play Guess The Number Game, range 1 - 10!");
                 break;
@@ -29,7 +29,7 @@ public class Messages {
                 gameRange = color.yellow("You have chosen to play Guess The Number Game, range 1 - 50!");
                 break;
             case 6:
-                gameRange = color.yellow("You have chosen to play Guess The Number Game, range 1 - 10!");
+                gameRange = color.yellow("You have chosen to play Guess The Number Game, with your own range number!");
                 break;
 
         }
@@ -54,6 +54,19 @@ public class Messages {
 
     public String tryToGuessAgainMessage() {
         return opponent + color.cyan("That is not my number. Guess again");
+    }
+
+    public String setFirstValue() {
+        return opponent + color.cyan("Set first integer range number");
+    }
+
+    public String setSecondValue() {
+        return opponent + color.cyan("Set second integer range number");
+    }
+
+    public String secondValueMustBeDifferent(int firstValue) {
+        return opponent + color.red("Second integer range number must be different than first value, which is: " +
+                color.redBold(String.valueOf(firstValue)));
     }
 
     public String howManyTriesYouWantToHave() {

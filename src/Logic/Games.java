@@ -119,19 +119,19 @@ public class Games extends Methods {
         }
     }
 
-    public void game1_51() throws InputMismatchException {
+    public void gamePlayerRange() throws InputMismatchException {
         boolean gameOneToTenIsRunning = true;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println(messages.menuGameRange(5));
+        System.out.println(messages.menuGameRange(6));
         while (gameOneToTenIsRunning) {
             int chooseGameSystem = methods.playerInputValidator(scanner, messages.menuPlayOrLeave(), messages.wrongButtonMessage());
             switch (chooseGameSystem) {
                 case 1:
-                    methods.oneTryMode(scanner, methods.randomNumber1_50());
+                    methods.oneTryMode(scanner, methods.randomRange(scanner));
                     break;
                 case 2:
-                    methods.multipleTriesMode(scanner, methods.randomNumber1_50());
+                    methods.multipleTriesMode(scanner, methods.randomRange(scanner));
                     break;
                 case 0:
                     System.out.println(messages.backToMainMenuMessage());
