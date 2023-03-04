@@ -3,7 +3,6 @@ package Logic;
 public class Messages {
 
     Colors color = new Colors();
-
     String opponent = color.cyanBoldUnderlined("Computer") + color.cyanBold(": ");
 
     public String welcomeMessage() {
@@ -31,7 +30,6 @@ public class Messages {
             case 6:
                 gameRange = color.yellow("You have chosen to play Guess The Number Game, with your own range number!");
                 break;
-
         }
         return gameRange;
     }
@@ -110,7 +108,7 @@ public class Messages {
                 "\n4 - Random number within range 1 - 40" +
                 "\n5 - Random number within range 1 - 50" +
                 "\n6 - Random number within range you set!" +
-                "\n0 - Exit game";
+                color.purpleBold("\n0 - Exit game");
     }
 
     public String exitGame() {

@@ -4,50 +4,39 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Methods {
+public class Methods extends RandomNumber {
     Random random = new Random();
-    Messages menu = new Messages();
+    Messages messages = new Messages();
 
-    public int randomNumber(int min, int max) {
-        return random.nextInt((max - min) + 1) + min;
-    }
 
-    public int randomNumber1_10() {
-        int min = 1;
-        int max = 10;
-        return random.nextInt((max - min) + 1) + min;
-    }
-
-    public int randomNumber1_20() {
-        int min = 1;
-        int max = 20;
-        return random.nextInt((max - min) + 1) + min;
-    }
-
-    public int randomNumber1_30() {
-        int min = 1;
-        int max = 30;
-        return random.nextInt((max - min) + 1) + min;
-    }
-
-    public int randomNumber1_40() {
-        int min = 1;
-        int max = 40;
-        return random.nextInt((max - min) + 1) + min;
-    }
-
-    public int randomNumber1_50() {
-        int min = 1;
-        int max = 50;
-        return random.nextInt((max - min) + 1) + min;
+    public int randomNumberSelector(int rangeNumber) {
+        int rndNbr = 0;
+        switch (rangeNumber) {
+            case 1:
+                rndNbr = randomNumber(1, 10);
+                break;
+            case 2:
+                rndNbr = randomNumber(1, 20);
+                break;
+            case 3:
+                rndNbr = randomNumber(1, 30);
+                break;
+            case 4:
+                rndNbr = randomNumber(1, 40);
+                break;
+            case 5:
+                rndNbr = randomNumber(1, 50);
+                break;
+        }
+        return rndNbr;
     }
 
     public int randomRange(Scanner scanner) {
-        int firstValue = playerInputValidator(scanner, menu.setFirstValue(), menu.thatIsNotNumberErrorMessage());
-        int secondValue = playerInputValidator(scanner, menu.setSecondValue(), menu.thatIsNotNumberErrorMessage());
+        int firstValue = playerInputValidator(scanner, messages.setFirstValue(), messages.thatIsNotNumberErrorMessage());
+        int secondValue = playerInputValidator(scanner, messages.setSecondValue(), messages.thatIsNotNumberErrorMessage());
         while (secondValue == firstValue) {
-            System.out.println(menu.secondValueMustBeDifferent(firstValue));
-            secondValue = playerInputValidator(scanner, menu.setSecondValue(), menu.thatIsNotNumberErrorMessage());
+            System.out.println(messages.secondValueMustBeDifferent(firstValue));
+            secondValue = playerInputValidator(scanner, messages.setSecondValue(), messages.thatIsNotNumberErrorMessage());
         }
         int max = Math.max(firstValue, secondValue);
         int min = Math.min(firstValue, secondValue);
@@ -57,12 +46,11 @@ public class Methods {
 
     public void checkNumbersForOneTry(int computerNumber, int playerNumber) {
         if (playerNumber == computerNumber) {
-            System.out.println(menu.congratulationsGuessedTheNumber());
+            System.out.println(messages.congratulationsGuessedTheNumber());
         } else {
-            System.out.println(menu.reachedMaximumNumberOfTriesAndNotGuessed(computerNumber));
+            System.out.println(messages.reachedMaximumNumberOfTriesAndNotGuessed(computerNumber));
         }
     }
-
 
     public int playerInputValidator(Scanner scan, String optionsMessage, String errorMessage) {
         while (true) {
@@ -80,19 +68,19 @@ public class Methods {
     public void multipleTriesMode(Scanner scanner, int computerNumber) {
         int guessCount = 0;
         int playerNumber;
-        int numberOfTries = playerInputValidator(scanner, menu.howManyTriesYouWantToHave(), menu.inputAmountOfTriesErrorMessage());
-        System.out.println(menu.computerDrewNumberMessage());
+        int numberOfTries = playerInputValidator(scanner, messages.howManyTriesYouWantToHave(), messages.inputAmountOfTriesErrorMessage());
+        System.out.println(messages.computerDrewNumberMessage());
         while (guessCount < numberOfTries) {
             guessCount++;
-            playerNumber = playerInputValidator(scanner, menu.howManyGuessesUsed(guessCount, numberOfTries), menu.thatIsNotNumberErrorMessage());
+            playerNumber = playerInputValidator(scanner, messages.howManyGuessesUsed(guessCount, numberOfTries), messages.thatIsNotNumberErrorMessage());
             if (playerNumber == computerNumber) {
-                System.out.println(menu.congratulationsGuessedTheNumber());
+                System.out.println(messages.congratulationsGuessedTheNumber());
                 break;
             }
             if (playerNumber != computerNumber && guessCount == numberOfTries) {
-                System.out.println(menu.reachedMaximumNumberOfTriesAndNotGuessed(computerNumber));
+                System.out.println(messages.reachedMaximumNumberOfTriesAndNotGuessed(computerNumber));
             } else if (playerNumber != computerNumber) {
-                System.out.println(menu.tryToGuessAgainMessage());
+                System.out.println(messages.tryToGuessAgainMessage());
             }
         }
     }
@@ -101,8 +89,8 @@ public class Methods {
         int playerNumber;
         int computerNumber;
         computerNumber = randomNumberRange;
-        System.out.println(menu.computerDrewNumberMessage());
-        playerNumber = playerInputValidator(scanner, menu.youHaveOnlyOneTryToGuessTheNumber(), menu.thatIsNotNumberErrorMessage());
+        System.out.println(messages.computerDrewNumberMessage());
+        playerNumber = playerInputValidator(scanner, messages.youHaveOnlyOneTryToGuessTheNumber(), messages.thatIsNotNumberErrorMessage());
         checkNumbersForOneTry(computerNumber, playerNumber);
     }
 
